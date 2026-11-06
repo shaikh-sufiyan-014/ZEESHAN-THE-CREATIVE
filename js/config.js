@@ -15,7 +15,7 @@ const CONFIG = {
 
   // Social Links
   instagram: "https://www.instagram.com/zeeshan_the_creative/",
-  instagramDM: "https://www.instagram.com/zeeshan_the_creative?obrf=MWJ1cjBodXludG9ycA==",
+  instagramDM: "https://www.instagram.com/direct/t/17842200524287792/",
   youtube: "https://youtube.com/@zeeshanthecreative",
   facebook: "https://www.facebook.com/zeeshan.chishti.16",
 
