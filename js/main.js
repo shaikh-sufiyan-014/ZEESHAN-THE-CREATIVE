@@ -52,27 +52,41 @@ function getSafeLink(url, fallback = '#') {
  */
 function hydrateContent() {
   const waUrl = getWhatsAppUrl(CONFIG.whatsappNumber, CONFIG.whatsappMessage);
-  const igDmUrl = getSafeLink(CONFIG.instagramDM, 'https://ig.me/m/zeeshan_the_creative');
+  const igDmUrl = getSafeLink(CONFIG.instagramDM, 'https://www.instagram.com/zeeshan_the_creative?obrf=MWJ1cjBodXludG9ycA==');
   const igUrl = getSafeLink(CONFIG.instagram, 'https://www.instagram.com/zeeshan_the_creative/');
   const ytUrl = getSafeLink(CONFIG.youtube, 'https://youtube.com/@zeeshanthecreative');
   const fbUrl = getSafeLink(CONFIG.facebook, '#');
   const emailUrl = CONFIG.email ? `mailto:${CONFIG.email}` : '#';
 
-  // 1. WhatsApp Action Links
+  // 1. WhatsApp Action Links (Hero, Navbar, Contact CTA)
   document.querySelectorAll('.js-wa-link').forEach(el => {
     el.href = waUrl;
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener noreferrer');
   });
 
-  // 2. Instagram DM Action Links
+  // 2. Instagram DM Action Links (Hero, Contact CTA)
   document.querySelectorAll('.js-ig-dm-link').forEach(el => {
     el.href = igDmUrl;
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener noreferrer');
   });
 
   // 3. Social Profile Links
-  document.querySelectorAll('.js-ig-link').forEach(el => el.href = igUrl);
-  document.querySelectorAll('.js-yt-link').forEach(el => el.href = ytUrl);
+  document.querySelectorAll('.js-ig-link').forEach(el => {
+    el.href = igUrl;
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener noreferrer');
+  });
+  document.querySelectorAll('.js-yt-link').forEach(el => {
+    el.href = ytUrl;
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener noreferrer');
+  });
   document.querySelectorAll('.js-fb-link').forEach(el => {
     el.href = fbUrl;
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener noreferrer');
     if (fbUrl === '#') {
       el.setAttribute('title', 'Facebook link to be updated in js/config.js');
     }

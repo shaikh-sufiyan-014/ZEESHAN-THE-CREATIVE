@@ -15,13 +15,13 @@ const CONFIG = {
 
   // Social Links
   instagram: "https://www.instagram.com/zeeshan_the_creative/",
-  instagramDM: "https://ig.me/m/zeeshan_the_creative",
+  instagramDM: "https://www.instagram.com/zeeshan_the_creative?obrf=MWJ1cjBodXludG9ycA==",
   youtube: "https://youtube.com/@zeeshanthecreative",
   facebook: "PASTE_FACEBOOK_LINK_HERE", // Replace with your Facebook profile or page URL
 
   // Contact Details
-  whatsappNumber: "91XXXXXXXXXX", // Replace with your 10-digit WhatsApp phone number with country code (e.g., 919876543210)
-  whatsappMessage: "Hi Zeeshan, I saw your portfolio and want to promote my brand.",
+  whatsappNumber: "917666271221", // 10-digit WhatsApp number with 91 country code (no + sign, no spaces)
+  whatsappMessage: "Hi Zeeshan, I saw your portfolio and want to promote my brand",
   email: "zeeshanthecreative@gmail.com",
 
   // Headline Numbers & Stats Strip

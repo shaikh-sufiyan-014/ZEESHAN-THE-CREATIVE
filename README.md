@@ -20,7 +20,7 @@ Built with **HTML5, CSS3, and vanilla JavaScript** — zero dependencies, zero b
 
 ```
 zeeshan-portfolio/
-├── index.html              # Main HTML5 page (all 13 sections in order)
+├── index.html              # Main HTML5 page (all 12 sections in order)
 ├── README.md               # Documentation & deployment guide
 ├── css/
 │   └── style.css           # Street-poster aesthetic CSS & responsive styles
@@ -28,13 +28,13 @@ zeeshan-portfolio/
 │   ├── config.js           # Central configuration (links, stats, reels, reviews)
 │   └── main.js             # Dynamic hydration, counters, lightbox, animations
 └── assets/
-    └── images/             # All 28 replaceable image assets + favicon
+    ├── incoming/           # Untouched raw screenshots archive
+    └── images/             # All clean active image assets + favicon
         ├── reel-1.png ... reel-6.png
         ├── insights-overview.png ... insights-top-content.png
         ├── audience-location.png, audience-age-gender.png
-        ├── followers-growth.png, shares-saves-1.png, shares-saves-2.png
+        ├── shares-saves-1.png ... shares-saves-3.png
         ├── review-1.png ... review-4.png
-        ├── style-poster.png, style-street.png
         ├── promote-1.png ... promote-6.png
         ├── hero-photo.png
         └── favicon.png
@@ -44,7 +44,7 @@ zeeshan-portfolio/
 
 ## 2. Image Replacement Reference Table
 
-All demo placeholders are saved in `assets/images/`. To replace any placeholder with your real screenshot or creator photo, **overwrite the file keeping the exact same filename**. No code changes are required!
+All active screenshot slots and video covers are saved in `assets/images/`. To replace any placeholder with your real screenshot or creator photo, **overwrite the file keeping the exact same filename**.
 
 | # | Filename | Recommended Dimensions | Aspect Ratio | Section Where It Appears | Purpose / Content Description |
 |---|----------|------------------------|--------------|---------------------------|-------------------------------|
@@ -55,33 +55,31 @@ All demo placeholders are saved in `assets/images/`. To replace any placeholder 
 | 5 | `reel-4.png` | 1080 × 1920 px | 9:16 | **4. Most Viral Reels** | Fourth Viral Reel (50.3K Views) |
 | 6 | `reel-5.png` | 1080 × 1920 px | 9:16 | **4. Most Viral Reels** | Fifth Viral Reel (31.5K Views) |
 | 7 | `reel-6.png` | 1080 × 1920 px | 9:16 | **4. Most Viral Reels** | Sixth Viral Reel (27.1K Views) |
-| 8 | `insights-overview.png` | 1200 × 750 px | 16:10 | **5. Dashboard & Insights** | Professional Dashboard 30-day overview screenshot |
-| 9 | `insights-top-reel.png` | 1200 × 750 px | 16:10 | **5. Dashboard & Insights** | Top reel analytics screenshot (showing 665K+ plays) |
-| 10 | `insights-followers-vs-nonfollowers.png` | 1200 × 750 px | 16:10 | **5. Dashboard & Insights** | Audience reach distribution (non-followers reach) |
-| 11 | `insights-top-content.png` | 1200 × 750 px | 16:10 | **5. Dashboard & Insights** | Grid of top-performing reels screenshot |
-| 12 | `audience-location.png` | 1200 × 750 px | 16:10 | **6. Audience Proof** | Instagram Audience Demographics (Top Cities / Mumbai) |
-| 13 | `audience-age-gender.png` | 1200 × 750 px | 16:10 | **6. Audience Proof** | Instagram Audience Age & Gender distribution |
+| 8 | `insights-overview.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **5. Dashboard & Insights** | Professional Dashboard overview screenshot |
+| 9 | `insights-top-reel.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **5. Dashboard & Insights** | Top reel analytics screenshot (665K+ plays) |
+| 10 | `insights-followers-vs-nonfollowers.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **5. Dashboard & Insights** | Audience reach distribution (non-followers reach) |
+| 11 | `insights-top-content.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **5. Dashboard & Insights** | Grid of top-performing reels screenshot |
+| 12 | `audience-location.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **6. Audience Proof** | Instagram Audience Demographics (Top Cities / Mumbai) |
+| 13 | `audience-age-gender.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **6. Audience Proof** | Instagram Audience Age & Gender distribution |
 | 14 | `promote-1.png` | 1080 × 1920 px | 9:16 | **7. What We Promote** | Sample reel cover #1 (Any product/brand category) |
 | 15 | `promote-2.png` | 1080 × 1920 px | 9:16 | **7. What We Promote** | Sample reel cover #2 (Any product/brand category) |
 | 16 | `promote-3.png` | 1080 × 1920 px | 9:16 | **7. What We Promote** | Sample reel cover #3 (Any product/brand category) |
 | 17 | `promote-4.png` | 1080 × 1920 px | 9:16 | **7. What We Promote** | Sample reel cover #4 (Any product/brand category) |
 | 18 | `promote-5.png` | 1080 × 1920 px | 9:16 | **7. What We Promote** | Sample reel cover #5 (Any product/brand category) |
 | 19 | `promote-6.png` | 1080 × 1920 px | 9:16 | **7. What We Promote** | Sample reel cover #6 (Any product/brand category) |
-| 20 | `style-poster.png` | 1080 × 1920 px | 9:16 | **8. Two Reel Styles** | "Poster Reel" sample (offer, price, call to action) |
-| 21 | `style-street.png` | 1080 × 1920 px | 9:16 | **8. Two Reel Styles** | "Street Reel" sample (on-ground, authentic energy) |
-| 22 | `followers-growth.png` | 1200 × 750 px | 16:10 | **9. Followers & Shares** | Account followers growth chart screenshot |
-| 23 | `shares-saves-1.png` | 1200 × 750 px | 16:10 | **9. Followers & Shares** | Reel interaction analytics screenshot (Shares & Saves #1) |
-| 24 | `shares-saves-2.png` | 1200 × 750 px | 16:10 | **9. Followers & Shares** | Reel interaction analytics screenshot (Shares & Saves #2) |
-| 25 | `review-1.png` | 1000 × 700 px | 10:7 | **10. Reviews** | Client chat or DM feedback screenshot #1 |
-| 26 | `review-2.png` | 1000 × 700 px | 10:7 | **10. Reviews** | Client chat or DM feedback screenshot #2 |
-| 27 | `review-3.png` | 1000 × 700 px | 10:7 | **10. Reviews** | Client chat or DM feedback screenshot #3 |
-| 28 | `review-4.png` | 1000 × 700 px | 10:7 | **10. Reviews** | Client chat or DM feedback screenshot #4 |
-| 29 | `favicon.png` | 128 × 128 px | 1:1 | **Browser Tab / Favicon** | Yellow "Z" emblem on dark square badge |
+| 20 | `shares-saves-1.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **8. Shares & Saves** | Reel interaction analytics screenshot (Shares & Saves #1) |
+| 21 | `shares-saves-2.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **8. Shares & Saves** | Reel interaction analytics screenshot (Shares & Saves #2) |
+| 22 | `shares-saves-3.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **8. Shares & Saves** | Reel interaction analytics screenshot (Shares & Saves #3) |
+| 23 | `review-1.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **9. Reviews** | Client chat or DM feedback screenshot #1 |
+| 24 | `review-2.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **9. Reviews** | Client chat or DM feedback screenshot #2 |
+| 25 | `review-3.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **9. Reviews** | Client chat or DM feedback screenshot #3 |
+| 26 | `review-4.png` | 1080 × 2340 px | ~9:19.5 (Portrait) | **9. Reviews** | Client chat or DM feedback screenshot #4 |
+| 27 | `favicon.png` | 128 × 128 px | 1:1 | **Browser Tab / Favicon** | Yellow "Z" emblem on dark square badge |
 
 > **Note on Image Rendering:**  
-> - 9:16 video covers (`reel-*.png`, `style-*.png`, `promote-*.png`) render with `object-fit: cover`.  
-> - Analytics and conversation screenshots (`insights-*.png`, `audience-*.png`, `shares-*.png`, `review-*.png`) render with `object-fit: contain` inside dark frames so **no screenshot is ever cut off or cropped**.  
-> - Clicking any screenshot opens an integrated full-screen lightbox.
+> - 9:16 video covers (`reel-*.png`, `promote-*.png`) render with `object-fit: cover`.  
+> - Analytics and conversation screenshots (`insights-*.png`, `audience-*.png`, `shares-saves-*.png`, `review-*.png`) render with `object-fit: contain` inside 9:19.5 phone-style cards so **no screenshot is ever cropped, stretched, or cut off**.  
+> - Clicking any screenshot opens an integrated full-screen lightbox tailored for phone screenshots.
 
 ---
 
@@ -100,13 +98,13 @@ const CONFIG = {
 
   // Social Links
   instagram: "https://www.instagram.com/zeeshan_the_creative/",
-  instagramDM: "https://ig.me/m/zeeshan_the_creative",
+  instagramDM: "https://www.instagram.com/zeeshan_the_creative?obrf=MWJ1cjBodXludG9ycA==",
   youtube: "https://youtube.com/@zeeshanthecreative",
   facebook: "PASTE_FACEBOOK_LINK_HERE", // Paste your Facebook link here
 
   // Contact Details
-  whatsappNumber: "919876543210", // Put your real 10-digit phone number with 91 prefix
-  whatsappMessage: "Hi Zeeshan, I saw your portfolio and want to promote my brand.",
+  whatsappNumber: "917666271221", // 10-digit WhatsApp number with 91 prefix (no plus, no spaces)
+  whatsappMessage: "Hi Zeeshan, I saw your portfolio and want to promote my brand",
   email: "zeeshanthecreative@gmail.com",
 
   // Numbers Strip Counters
@@ -198,9 +196,8 @@ You can host this website online for free with your own custom domain or free su
 ## 6. Design System & Technical Features
 
 - **Street Poster Energy**: High contrast dark theme (`#0D0D0D`, `#161616`), bold condensed uppercase titles (`Bebas Neue` / `Anton`), and signature punchy yellow accents (`#FFC700`) with hard offset drop-shadows.
+- **Phone-Style Screenshot Presentation**: Clean portrait 9:19.5 phone-style cards with subtle bezels, yellow borders, and offset shadows. Every screenshot fits with `object-fit: contain` so no analytics data or chat is cropped.
 - **Strict Brand Positioning**: Formulated for Mumbai-wide reach across all categories. Excludes any limited local tags (Vikhroli appears exclusively in the footer).
 - **Responsive Layout**: Fluid CSS clamp typography, CSS Grid, mobile scroll-snapping, and smooth sticky navigation.
 - **Lightbox Preview**: Tap or click any analytics screenshot or reel cover to inspect it in high resolution.
 - **Missing Image Safety**: If an image is missing or failed to download, an elegant styled fallback slot is rendered automatically instead of a broken browser icon.
-#   Z E E S H A N - T H E - C R E A T I V E  
- 
