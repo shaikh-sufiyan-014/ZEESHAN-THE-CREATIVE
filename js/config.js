@@ -17,7 +17,7 @@ const CONFIG = {
   instagram: "https://www.instagram.com/zeeshan_the_creative/",
   instagramDM: "https://www.instagram.com/zeeshan_the_creative?obrf=MWJ1cjBodXludG9ycA==",
   youtube: "https://youtube.com/@zeeshanthecreative",
-  facebook: "PASTE_FACEBOOK_LINK_HERE", // Replace with your Facebook profile or page URL
+  facebook: "https://www.facebook.com/zeeshan.chishti.16",
 
   // Contact Details
   whatsappNumber: "917666271221", // 10-digit WhatsApp number with 91 country code (no + sign, no spaces)
@@ -27,7 +27,7 @@ const CONFIG = {
   // Headline Numbers & Stats Strip
   stats: {
     followers: "8.4K",
-    topReelViews: "665K",
+    topReelViews: "628K",
     totalPosts: "173+",
     reach: "Mumbai-wide"
   },
@@ -35,50 +35,60 @@ const CONFIG = {
   // 6 Most Viral Reels (reel-1.png to reel-6.png in assets/images/)
   topReels: [
     {
-      views: "665K",
-      brand: "Brand Name",
-      caption: "Reel caption here"
+      views: "628K",
+      brand: "Diesel & Waste Oil Batti",
+      caption: "Vikhroli Mumbai",
+      reelUrl: "https://www.instagram.com/reel/DWpClpjjenv/"
     },
     {
-      views: "102K",
-      brand: "Brand Name",
-      caption: "Reel caption here"
+      views: "216K",
+      brand: "Packed Drinking Water",
+      caption: "IIT Market, Powai",
+      reelUrl: "https://www.instagram.com/reel/DWbMGilDXFN/"
     },
     {
-      views: "60.7K",
-      brand: "Brand Name",
-      caption: "Reel caption here"
+      views: "208K",
+      brand: "Baby Diapers",
+      caption: "Mumbai mein sabse sasta Diaper",
+      reelUrl: "https://www.instagram.com/reel/DYAjV9kN7om/"
     },
     {
-      views: "50.3K",
-      brand: "Brand Name",
-      caption: "Reel caption here"
+      views: "165K",
+      brand: "Bee Laban Cheese Bomb",
+      caption: "Grand Opening 23 May",
+      reelUrl: "https://www.instagram.com/reel/DYpivRstRSr/"
     },
     {
-      views: "31.5K",
-      brand: "Brand Name",
-      caption: "Reel caption here"
+      views: "120K",
+      brand: "Sai Leela Chinese Restaurant",
+      caption: "Vikhroli · Swiggy & Zomato",
+      reelUrl: "https://www.instagram.com/reel/Da3dBGptEu3/"
     },
     {
-      views: "27.1K",
-      brand: "Brand Name",
-      caption: "Reel caption here"
+      views: "117K",
+      brand: "Charcoal Shawarma House",
+      caption: "Best Shawarma in Mumbai",
+      reelUrl: "https://www.instagram.com/reel/DXFZ38SDapW/"
     }
   ],
 
-  // Quote Cards for Reviews Section (Generic Placeholders only - no fake testimonials)
+  // Quote Cards for Reviews Section (Faithful copy from Brand Feedback screenshots)
   reviews: [
     {
-      quote: "Review text goes here."
+      quote: "Thanks zeeshan bhai, great response, fully satisfied from your promotion",
+      author: "@shaibaaz_collection"
     },
     {
-      quote: "Review text goes here."
+      quote: "Hello Zee Bhai, had a great response from your Video thankyouuu so muchh for visitingg uss",
+      author: "@_b_waffles"
     },
     {
-      quote: "Review text goes here."
+      quote: "Thank you so much, Zeeshan Bhai! We received an amazing response after you promoted our page, and we truly appreciate your support. It means a lot to us, and we\u2019re genuinely grateful for your kindness and encouragement. We look forward to your continued support. Thank you once again for being a part of our journey!",
+      author: "Brand Owner"
     },
     {
-      quote: "Review text goes here."
+      quote: "Hello sir I would like to take a moment and Thankyou for the reel that you uploaded Honestly i have a great response touchwood Looking forward for more such collaboration in future",
+      author: "@physiojainkhushi"
     }
   ],
 

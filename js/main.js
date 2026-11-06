@@ -3,7 +3,7 @@
  * ZEESHAN THE CREATIVE - MAIN SCRIPT
  * ==========================================================================
  * Hydrates content dynamically from CONFIG, handles responsive navigation,
- * animated number counters, scroll animations, image fallbacks, and lightbox.
+ * animated number counters, scroll animations, justified gallery, and lightbox.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,8 +21,8 @@ function initPortfolio() {
   initStatsCounter();
   initScrollAnimations();
   initLightbox();
-  initImageFallbacks();
   initSmoothScroll();
+  initJustifiedGallery();
 }
 
 /**
@@ -87,9 +87,6 @@ function hydrateContent() {
     el.href = fbUrl;
     el.setAttribute('target', '_blank');
     el.setAttribute('rel', 'noopener noreferrer');
-    if (fbUrl === '#') {
-      el.setAttribute('title', 'Facebook link to be updated in js/config.js');
-    }
   });
   document.querySelectorAll('.js-email-link').forEach(el => {
     el.href = emailUrl;
@@ -113,7 +110,7 @@ function hydrateContent() {
     const statSubline = document.querySelector('.js-stat-subline');
 
     if (statFollowers) statFollowers.textContent = CONFIG.stats.followers || '8.4K';
-    if (statTopReel) statTopReel.textContent = CONFIG.stats.topReelViews || '665K';
+    if (statTopReel) statTopReel.textContent = CONFIG.stats.topReelViews || '628K';
     if (statPosts) statPosts.textContent = CONFIG.stats.totalPosts || '173+';
     if (statReach) statReach.textContent = CONFIG.stats.reach || 'Mumbai-wide';
 
@@ -130,13 +127,18 @@ function hydrateContent() {
       const isTop = index === 0;
       const reelCard = document.createElement('article');
       reelCard.className = `reel-card ${isTop ? 'reel-card--viral' : ''}`;
+      // Store reelUrl on the card for lightbox to read
+      if (reel.reelUrl) {
+        reelCard.dataset.reelUrl = reel.reelUrl;
+      }
       reelCard.innerHTML = `
         <div class="reel-media">
           <img src="assets/images/reel-${index + 1}.png" 
-               alt="${reel.brand} Reel - ${reel.views} views" 
+               alt="${escapeHtml(reel.brand)} Reel - ${reel.views} views" 
                loading="lazy" 
                class="zoomable"
-               data-caption="${reel.brand} · ${reel.views} Views · ${reel.caption}">
+               data-caption="${escapeHtml(reel.brand)} \u00b7 ${reel.views} Views \u00b7 ${escapeHtml(reel.caption)}"
+               data-reel-url="${escapeHtml(reel.reelUrl || '')}">
           ${isTop ? '<span class="badge badge--viral"><span class="badge-dot"></span>VIRAL</span>' : ''}
           <div class="reel-views-pill">
             <svg class="icon icon-eye" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
@@ -161,10 +163,11 @@ function hydrateContent() {
     CONFIG.reviews.forEach((rev, idx) => {
       const card = document.createElement('div');
       card.className = 'quote-card';
+      const authorLabel = rev.author || `Brand Partner Feedback #${idx + 1}`;
       card.innerHTML = `
-        <div class="quote-mark" aria-hidden="true">“</div>
+        <div class="quote-mark" aria-hidden="true">\u201C</div>
         <p class="quote-text">${escapeHtml(rev.quote)}</p>
-        <div class="quote-author-tag">Brand Partner Feedback #${idx + 1}</div>
+        <div class="quote-author-tag">${escapeHtml(authorLabel)}</div>
       `;
       quotesGrid.appendChild(card);
     });
@@ -359,7 +362,10 @@ function initScrollAnimations() {
 }
 
 /**
- * Lightbox for screenshots and proof cards
+ * Lightbox for screenshots and proof cards.
+ * - Reel thumbnails: show image + "Watch On Instagram" button
+ * - Other screenshots: show image only
+ * Uses clicked image's own src. Never shows placeholder. Handles load errors.
  */
 function initLightbox() {
   const lightbox = document.getElementById('lightbox');
@@ -368,13 +374,26 @@ function initLightbox() {
   const lightboxImg = lightbox.querySelector('.lightbox-img');
   const lightboxCaption = lightbox.querySelector('.lightbox-caption');
   const closeBtn = lightbox.querySelector('.lightbox-close');
+  const reelAction = lightbox.querySelector('.lightbox-reel-action');
+  const reelBtn = reelAction ? reelAction.querySelector('.lightbox-reel-btn') : null;
   let lastFocusedElement = null;
 
-  function openLightbox(src, alt, caption) {
+  function openLightbox(src, alt, caption, reelUrl) {
     lastFocusedElement = document.activeElement;
     lightboxImg.src = src;
     lightboxImg.alt = alt || 'Preview';
     lightboxCaption.textContent = caption || alt || '';
+
+    // Show/hide reel action button
+    if (reelAction && reelBtn) {
+      if (reelUrl && reelUrl.length > 5 && !reelUrl.includes('PASTE_')) {
+        reelBtn.href = reelUrl;
+        reelAction.style.display = '';
+      } else {
+        reelAction.style.display = 'none';
+      }
+    }
+
     lightbox.classList.add('lightbox--active');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.classList.add('no-scroll');
@@ -386,6 +405,7 @@ function initLightbox() {
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('no-scroll');
     lightboxImg.src = '';
+    if (reelAction) reelAction.style.display = 'none';
     if (lastFocusedElement) {
       lastFocusedElement.focus();
     }
@@ -393,16 +413,26 @@ function initLightbox() {
 
   // Delegate click for zoomable images
   document.addEventListener('click', (e) => {
+    // Don't intercept clicks on the reel button link itself
+    if (e.target.closest('.lightbox-reel-btn')) return;
+
     const target = e.target.closest('.zoomable');
     if (target && target.tagName === 'IMG') {
+      // Only open lightbox if the image actually loaded successfully
+      if (!target.naturalWidth || target.naturalWidth === 0) return;
       e.preventDefault();
       const caption = target.getAttribute('data-caption') || target.alt || '';
-      openLightbox(target.currentSrc || target.src, target.alt, caption);
+      const reelUrl = target.getAttribute('data-reel-url') || '';
+      openLightbox(target.currentSrc || target.src, target.alt, caption, reelUrl);
     }
   });
 
   closeBtn.addEventListener('click', closeLightbox);
+
   lightbox.addEventListener('click', (e) => {
+    // Don't close if clicking on the reel button or lightbox content
+    if (e.target.closest('.lightbox-reel-btn')) return;
+    if (e.target.closest('.lightbox-reel-action')) return;
     if (e.target === lightbox || e.target.classList.contains('lightbox-backdrop') || e.target.classList.contains('lightbox-container')) {
       closeLightbox();
     }
@@ -418,41 +448,48 @@ function initLightbox() {
 }
 
 /**
- * Image Error Fallback - replace missing image with styled placeholder box
+ * Justified Gallery Layout
+ * Reads each image's naturalWidth/naturalHeight and sets flex-basis
+ * proportionally so all images in a row have the same visual height.
+ * Re-runs on window resize.
  */
-function initImageFallbacks() {
-  const images = document.querySelectorAll('img');
-  images.forEach(img => {
-    img.addEventListener('error', function() {
-      handleImageError(this);
+function initJustifiedGallery() {
+  const grids = document.querySelectorAll('.insights-grid, .audience-grid, .shares-saves-grid, .reviews-screenshots-grid');
+
+  function layoutGrid(grid) {
+    const cards = grid.querySelectorAll('.screenshot-card');
+    cards.forEach(card => {
+      const img = card.querySelector('.screenshot-frame img');
+      if (!img) return;
+
+      function applyRatio() {
+        const w = img.naturalWidth || img.width;
+        const h = img.naturalHeight || img.height;
+        if (w && h) {
+          // flex-grow proportional to aspect ratio so all images in a row
+          // end up the same height when the row fills the container width
+          const ratio = w / h;
+          card.style.flexGrow = ratio.toFixed(4);
+          card.style.flexBasis = (ratio * 180) + 'px'; // base height ~180px
+        }
+      }
+
+      if (img.complete && img.naturalWidth) {
+        applyRatio();
+      } else {
+        img.addEventListener('load', applyRatio);
+      }
     });
-  });
-}
-
-function handleImageError(img) {
-  // Prevent infinite loops
-  if (img.dataset.hasFallback) return;
-  img.dataset.hasFallback = 'true';
-
-  const filename = img.getAttribute('src') ? img.getAttribute('src').split('/').pop() : 'image.png';
-  const fallbackBox = document.createElement('div');
-  fallbackBox.className = 'image-fallback-placeholder';
-  fallbackBox.innerHTML = `
-    <div class="fallback-inner">
-      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
-        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-        <circle cx="8.5" cy="8.5" r="1.5"/>
-        <polyline points="21 15 16 10 5 21"/>
-      </svg>
-      <span class="fallback-tag">REPLACE ME</span>
-      <code class="fallback-filename">${escapeHtml(filename)}</code>
-      <small class="fallback-tip">Place your real screenshot here</small>
-    </div>
-  `;
-
-  // Preserve aspect ratio if applied to image parent or self
-  if (img.parentElement) {
-    img.style.display = 'none';
-    img.parentElement.appendChild(fallbackBox);
   }
+
+  grids.forEach(grid => layoutGrid(grid));
+
+  // Re-layout on resize (debounced)
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      grids.forEach(grid => layoutGrid(grid));
+    }, 200);
+  });
 }
